@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="logout">Log Out</string>
+    <string name="access_ok">Acceso correcto</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Log In</string>
+    <string name="login_error_message">Los datos de acceso no corresponden con ninguna cuenta,
+        inténtelo de nuevo o proceda a recuperar la contraseña.</string>
+
+</resources>
