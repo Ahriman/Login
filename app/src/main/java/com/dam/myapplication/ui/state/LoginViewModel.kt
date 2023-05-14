@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.dam.myapplication.data.model.User
 
-private const val MIN_PASSWORD_LENGTH = 8
+const val MIN_PASSWORD_LENGTH = 8 // TODO: Dejar público aquí para poder acceder desde LoginBlock ?
 private const val USER_TEST = "pepe@pepe.com"
 private const val PASSWORD_TEST = "12345678"
 
@@ -66,7 +66,9 @@ class LoginViewModel: ViewModel() {
         _loggedUser = null
     }
 
-    fun isValidEmailAndPassword() = _emailText.isValidEmail() && _passwordText.isValidPassword()
+    fun isValidEmail() = _emailText.isValidEmail()
+    fun isValidPassword() =  _passwordText.isValidPassword()
+    fun isValidEmailAndPassword() = isValidEmail() && isValidPassword()
 
     fun changePasswordVisible() {
         _passwordVisible = !_passwordVisible

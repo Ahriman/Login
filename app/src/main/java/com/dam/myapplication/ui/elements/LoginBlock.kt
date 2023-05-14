@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dam.myapplication.R
 import com.dam.myapplication.ui.state.LoginViewModel
+import com.dam.myapplication.ui.state.MIN_PASSWORD_LENGTH
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,7 +70,7 @@ fun LoginBlock(
         supportingText = {
             // TODO: Se debería mostrar el mensaje solamente en ciertas condiciones
             //       en las que se incumple el formato de email
-            if (!vm.isValidEmailAndPassword())
+            if (!vm.isValidEmail())
                 Text(
                     text = "No tiene un formato correcto.",
                     color = MaterialTheme.colorScheme.error,
@@ -106,14 +107,14 @@ fun LoginBlock(
             }
 
         },
-//        supportingText = {
-//            if (!passwordText.isValidEmail() && passwordText.length < MIN_PASSWORD_LENGTH && passwordText.isNotEmpty())
-//                Text(
-////                                text = "Debe tener al menos 8 caracteres.",
-//                    text = "Faltan ${MIN_PASSWORD_LENGTH - passwordText.length} caracteres.",
-//                    color = MaterialTheme.colorScheme.error,
-//                )
-//        },
+        supportingText = {
+            if (!vm.isValidPassword() && vm.passwordText.isNotEmpty())
+                Text(
+//                    text = "Debe tener al menos 8 caracteres.",
+                    text = "Faltan ${MIN_PASSWORD_LENGTH - vm.passwordText.length} caracteres.",
+                    color = MaterialTheme.colorScheme.error,
+                )
+        },
         isError = vm.logginError,
         visualTransformation = if (vm.passwordVisible) VisualTransformation.None else {
             PasswordVisualTransformation()
