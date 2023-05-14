@@ -37,7 +37,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.2'
+        kotlinCompilerExtensionVersion '1.4.7'
     }
     packagingOptions {
         resources {
@@ -56,22 +56,28 @@ dependencies {
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.material3:material3'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
 
+    // Más iconos
+    implementation "androidx.compose.material:material-icons-extended:1.4.3"
+    // Añadido porque daba un error:
     // https://stackoverflow.com/questions/76191980/i-get-a-duplicate-class-error-when-running-my-android-project
-    implementation "androidx.compose.material:material-icons-extended:1.4.3" // Más iconos
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10") {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21") {
         because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
     }
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10") {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21") {
         because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
     }
 
     // StatusBar
     // https://google.github.io/accompanist/themeadapter-material3/
-    implementation "com.google.accompanist:accompanist-systemuicontroller:0.31.1-alpha"
+//    implementation "com.google.accompanist:accompanist-systemuicontroller:0.31.1-alpha"
 
+    // ViewModel utilities for Compose
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
