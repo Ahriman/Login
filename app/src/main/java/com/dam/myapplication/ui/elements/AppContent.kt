@@ -25,8 +25,6 @@ fun AppContent() {
 
     val vm: LoginViewModel = viewModel()
 
-//    var loggin by rememberSaveable { mutableStateOf(false) }
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -34,16 +32,6 @@ fun AppContent() {
                     Text(text = vm.loggedUser?.name ?: stringResource(id = R.string.login))
                 },
                 modifier = Modifier.fillMaxWidth(),
-//                navigationIcon = {
-//                    if (loggin)
-//                        IconButton(
-//                            onClick = { loggin = false },
-//                        ) {
-//                            Icon(
-//                                imageVector = Icons.Filled.ArrowBack, contentDescription = "Back button"
-//                            )
-//                        }
-//                }
                 actions = {
                     vm.loggedUser?.let {
                         Button(onClick = {
@@ -55,28 +43,6 @@ fun AppContent() {
                 }
             )
         },
-//        bottomBar = {
-//            if (loggin) {
-//                BottomAppBar(actions = {
-//
-//                    Row(
-//                        Modifier.fillMaxSize(),
-//                        horizontalArrangement = Arrangement.spacedBy(
-//                            5.dp,
-//                            Alignment.CenterHorizontally
-//                        ),
-//                        verticalAlignment = Alignment.CenterVertically,
-//                    ) {
-//                        Button(onClick = {
-//                            loggin = false
-//                        }) {
-//                            Text(text = stringResource(id = R.string.logout))
-//                        }
-//                    }
-//
-//                })
-//            }
-//        }
     ) {
         Column(
             Modifier
@@ -88,6 +54,7 @@ fun AppContent() {
             vm.loggedUser?.let {
                 Text(text = stringResource(id = R.string.access_ok))
             } ?: LoginBlock(
+//                vm
 //                vm.emailText,
 //                vm.passwordText,
 //                vm.validEmail,

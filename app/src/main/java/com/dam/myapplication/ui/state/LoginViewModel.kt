@@ -5,13 +5,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.dam.myapplication.data.model.UsersList
 import com.dam.myapplication.data.model.User
 
 const val MIN_PASSWORD_LENGTH = 8 // TODO: Dejar público aquí para poder acceder desde LoginBlock ?
-private const val USER_TEST = "pepe@pepe.com"
-private const val PASSWORD_TEST = "12345678"
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : ViewModel() {
 
     /**
      * Propiedades
@@ -54,12 +53,20 @@ class LoginViewModel: ViewModel() {
     }
 
     fun logIn() {
-        if (_emailText == USER_TEST && _passwordText == PASSWORD_TEST) {
+
+        val userFound = UsersList().list.find {
+            it.email.equals(_emailText, ignoreCase = true) && it.password == _passwordText
+        }
+
+        // TODO: Aquí no me funciona el operador elvis por eso uso el if a continuación
+        if (userFound != null) {
 //            _enableLogin = true
             _logginError = false
-            _loggedUser = User(_emailText, _passwordText, "Pepe")
-        } else
+            _loggedUser = userFound
+        } else {
             _logginError = true
+        }
+
     }
 
     fun logOut() {
@@ -67,7 +74,7 @@ class LoginViewModel: ViewModel() {
     }
 
     fun isValidEmail() = _emailText.isValidEmail()
-    fun isValidPassword() =  _passwordText.isValidPassword()
+    fun isValidPassword() = _passwordText.isValidPassword()
     fun isValidEmailAndPassword() = isValidEmail() && isValidPassword()
 
     fun changePasswordVisible() {

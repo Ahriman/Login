@@ -34,6 +34,7 @@ import com.dam.myapplication.ui.state.MIN_PASSWORD_LENGTH
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginBlock(
+//    vm: LoginViewModel // Pasado como parámetro, ya que es el mismo ViewModel que el de AppContent
 //    emailText: String,
 //    onChangeEmail: (String) -> Unit,
 //    passwordText: String,
@@ -44,7 +45,8 @@ fun LoginBlock(
 //    passwordVisible: Boolean,
 //    enableLogin: Boolean,
 ) {
-    val vm: LoginViewModel = viewModel() // TODO: Así o mejor pasar por parámetro los métodos
+    val vm: LoginViewModel = viewModel() // TODO: Así o mejor pasar por parámetro las propiedades y
+    //       métodos, que están comentados arriba ?
     val focusManager = LocalFocusManager.current
 
     if (vm.logginError)
@@ -70,7 +72,7 @@ fun LoginBlock(
         supportingText = {
             // TODO: Se debería mostrar el mensaje solamente en ciertas condiciones
             //       en las que se incumple el formato de email
-            if (!vm.isValidEmail())
+            if (!vm.isValidEmail() && vm.emailText.isNotEmpty())
                 Text(
                     text = "No tiene un formato correcto.",
                     color = MaterialTheme.colorScheme.error,
